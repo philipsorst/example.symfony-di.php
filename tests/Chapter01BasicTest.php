@@ -5,9 +5,9 @@ namespace App\Tests;
 use App\Service\Mail\Mailer\MailerInterface;
 use App\Service\Mail\Mailer\SendmailMailer;
 use App\Service\Newsletter\NewsletterService;
-use http\Exception\RuntimeException;
-use phpDocumentor\Reflection\Exception\PcreException;
+use ArgumentCountError;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
@@ -44,7 +44,7 @@ class Chapter01BasicTest extends TestCase
 
         $containerBuilder->compile();
 
-        $this->expectException(\ArgumentCountError::class);
+        $this->expectException(ArgumentCountError::class);
         $containerBuilder->get(NewsletterService::class);
     }
 
@@ -59,6 +59,7 @@ class Chapter01BasicTest extends TestCase
         $containerBuilder->compile();
 
         $newsletterService = $containerBuilder->get(NewsletterService::class);
+        self::assertInstanceOf(NewsletterService::class, $newsletterService);
 
         self::assertTrue($newsletterService->sendNewsletters(['user@example.com']));
     }
@@ -72,6 +73,7 @@ class Chapter01BasicTest extends TestCase
         $containerBuilder->compile();
 
         $newsletterService = $containerBuilder->get(NewsletterService::class);
+        self::assertInstanceOf(NewsletterService::class, $newsletterService);
 
         self::assertTrue($newsletterService->sendNewsletters(['user@example.com']));
     }
@@ -85,6 +87,7 @@ class Chapter01BasicTest extends TestCase
         $containerBuilder->compile();
 
         $newsletterService = $containerBuilder->get(NewsletterService::class);
+        self::assertInstanceOf(NewsletterService::class, $newsletterService);
 
         self::assertTrue($newsletterService->sendNewsletters(['user@example.com']));
     }
@@ -95,7 +98,7 @@ class Chapter01BasicTest extends TestCase
         $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
         $loader->load('scan.yaml');
 
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(RuntimeException::class);
         $containerBuilder->compile();
     }
 
@@ -108,6 +111,7 @@ class Chapter01BasicTest extends TestCase
         $containerBuilder->compile();
 
         $newsletterService = $containerBuilder->get(NewsletterService::class);
+        self::assertInstanceOf(NewsletterService::class, $newsletterService);
 
         self::assertTrue($newsletterService->sendNewsletters(['user@example.com']));
     }
@@ -121,6 +125,7 @@ class Chapter01BasicTest extends TestCase
         $containerBuilder->compile();
 
         $newsletterService = $containerBuilder->get(NewsletterService::class);
+        self::assertInstanceOf(NewsletterService::class, $newsletterService);
 
         self::assertTrue($newsletterService->sendNewsletters(['user@example.com']));
     }
