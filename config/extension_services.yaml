@@ -1,0 +1,21 @@
+services:
+
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Service\Mail\Mailer\:
+        resource: '../src/Service/Mail/Mailer'
+
+    App\Service\Mail\Transport\:
+        resource: '../src/Service/Mail/Transport'
+
+    App\Service\Mail\Transport\TransportInterface:
+        alias: 'App\Service\Mail\Transport\SendmailTransport'
+        public: true
+
+    App\Service\Mail\Mailer\MailerInterface: '@App\Service\Mail\Mailer\GenericMailer'
+
+    App\Service\Newsletter\NewsletterService:
+        public: true
+        autowire: true

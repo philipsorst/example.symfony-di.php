@@ -1,0 +1,7 @@
+mailer:
+    smtp:
+        enabled: true
+        username: 'username'
+        password: 'password'
+        host: 'example.com'
+        port: 25
