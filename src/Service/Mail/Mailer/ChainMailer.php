@@ -4,13 +4,14 @@ namespace App\Service\Mail\Mailer;
 
 use App\Model\Email;
 use App\Service\Mail\Transport\TransportInterface;
+use RuntimeException;
 
 class ChainMailer implements MailerInterface
 {
     /**
      * @param iterable<TransportInterface> $transports
      */
-    public function __construct(private readonly iterable $transports)
+    public function __construct(public iterable $transports = [])
     {
     }
 
@@ -26,5 +27,14 @@ class ChainMailer implements MailerInterface
         }
 
         return false;
+    }
+
+    public function addTransport(TransportInterface $transport): void
+    {
+        if (!is_array($this->transports)) {
+            throw new RuntimeException('Transports is not an array');
+        }
+
+        $this->transports[] = $transport;
     }
 }

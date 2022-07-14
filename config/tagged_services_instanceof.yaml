@@ -1,0 +1,10 @@
+services:
+
+    # this config only applies to the services created by this file
+    _instanceof:
+        App\Service\Mail\Transport\TransportInterface:
+            public: true
+            tags: [ 'mail.transport' ]
+
+    App\Service\Mail\Transport\:
+        resource: '../src/Service/Mail/Transport'

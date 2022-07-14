@@ -1,0 +1,27 @@
+parameters:
+    smtp_transport_username: 'user'
+    smtp_transport_password: 'password'
+    smtp_transport_host: 'example.com'
+    smtp_transport_port: 25
+
+services:
+
+    # this config only applies to the services created by this file
+    _instanceof:
+        App\Service\Mail\Transport\TransportInterface:
+            tags: [ 'mail.transport' ]
+
+    App\Service\Mail\Transport\:
+        resource: '../src/Service/Mail/Transport'
+
+    App\Service\Mail\Transport\SmtpTransport:
+        arguments:
+            $username: '%smtp_transport_username%'
+            $password: '%smtp_transport_password%'
+            $host: '%smtp_transport_host%'
+            $port: '%smtp_transport_port%'
+
+    App\Service\Mail\Mailer\ChainMailer:
+        public: true
+        arguments:
+            - !tagged_iterator mail.transport

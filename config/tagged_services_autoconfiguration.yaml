@@ -1,0 +1,6 @@
+services:
+    _defaults:
+        autoconfigure: true
+
+    App\Service\Mail\Transport\:
+        resource: '../src/Service/Mail/Transport'

@@ -21,5 +21,15 @@
                 <referencedProperty name="PHPUnit\Framework\TestCase::$runTestInSeparateProcess" />
             </errorLevel>
         </PropertyNotSetInConstructor>
+        <MixedMethodCall>
+            <errorLevel type="suppress">
+                <file name="src/DependencyInjection/Mailer/Configuration.php" />
+            </errorLevel>
+        </MixedMethodCall>
+        <PossiblyUndefinedMethod>
+            <errorLevel type="suppress">
+                <referencedMethod name="Symfony\Component\Config\Definition\Builder\NodeDefinition::children" />
+            </errorLevel>
+        </PossiblyUndefinedMethod>
     </issueHandlers>
 </psalm>

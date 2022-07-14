@@ -22,13 +22,13 @@ class MailerExtension extends Extension
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../../../config'));
         $loader->load('extension_services.yaml');
 
-        $smtpConfig = $config['smtp'];
-        if ($smtpConfig['enabled']) {
+        $smtpConfig = (array)$config['smtp'];
+        if ((bool)$smtpConfig['enabled']) {
             $container->getDefinition(SmtpTransport::class)
-                ->addArgument($smtpConfig['username'])
-                ->addArgument($smtpConfig['password'])
-                ->addArgument($smtpConfig['host'])
-                ->addArgument($smtpConfig['port']);
+                ->addArgument((string)$smtpConfig['username'])
+                ->addArgument((string)$smtpConfig['password'])
+                ->addArgument((string)$smtpConfig['host'])
+                ->addArgument((int)$smtpConfig['port']);
             $container
                 ->setAlias(TransportInterface::class, SmtpTransport::class)
                 ->setPublic(true);
