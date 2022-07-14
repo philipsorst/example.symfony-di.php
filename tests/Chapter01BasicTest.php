@@ -67,7 +67,7 @@ class Chapter01BasicTest extends TestCase
     public function testYaml(): void
     {
         $containerBuilder = new ContainerBuilder();
-        $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
+        $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__ . '/../config/services'));
         $loader->load('minimal.yaml');
 
         $containerBuilder->compile();
@@ -81,7 +81,7 @@ class Chapter01BasicTest extends TestCase
     public function testAutowire(): void
     {
         $containerBuilder = new ContainerBuilder();
-        $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
+        $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__ . '/../config/services'));
         $loader->load('autowire.yaml');
 
         $containerBuilder->compile();
@@ -95,7 +95,7 @@ class Chapter01BasicTest extends TestCase
     public function testScanFailMissingAlias(): void
     {
         $containerBuilder = new ContainerBuilder();
-        $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
+        $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__ . '/../config/services'));
         $loader->load('scan.yaml');
 
         $this->expectException(RuntimeException::class);
@@ -105,7 +105,7 @@ class Chapter01BasicTest extends TestCase
     public function testInterfaceAlias(): void
     {
         $containerBuilder = new ContainerBuilder();
-        $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
+        $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__ . '/../config/services'));
         $loader->load('interface_alias.yaml');
 
         $containerBuilder->compile();
@@ -119,7 +119,7 @@ class Chapter01BasicTest extends TestCase
     public function testParameters(): void
     {
         $containerBuilder = new ContainerBuilder();
-        $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
+        $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__ . '/../config/services'));
         $loader->load('parameters.yaml');
 
         $containerBuilder->compile();

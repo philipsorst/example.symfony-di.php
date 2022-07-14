@@ -12,7 +12,7 @@ services:
         autoconfigure: true
 
     App\Service\Mail\Mailer\:
-        resource: '../src/Service/Mail/Mailer'
+        resource: '../../src/Service/Mail/Mailer'
 
     App\Service\Mail\Transport\SmtpTransport:
         arguments:

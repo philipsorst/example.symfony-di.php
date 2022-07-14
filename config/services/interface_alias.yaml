@@ -5,7 +5,9 @@ services:
         autoconfigure: true
 
     App\Service\Mail\Mailer\:
-        resource: '../src/Service/Mail/Mailer'
+        resource: '../../src/Service/Mail/Mailer'
+
+    App\Service\Mail\Mailer\MailerInterface: '@App\Service\Mail\Mailer\SendmailMailer'
 
     App\Service\Newsletter\NewsletterService:
         public: true
