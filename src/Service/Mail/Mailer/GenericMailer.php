@@ -7,7 +7,7 @@ use App\Service\Mail\Transport\TransportInterface;
 
 class GenericMailer implements MailerInterface
 {
-    public function __construct(private readonly TransportInterface $transport)
+    public function __construct(public readonly TransportInterface $transport)
     {
     }
 

@@ -1,0 +1,9 @@
+services:
+
+    App\Service\Mail\Mailer\MailerFactory: ~
+
+    App\Service\Mail\Mailer\MailerInterface:
+        # the first argument is the class and the second argument is the static method
+        factory: [ '@App\Service\Mail\Mailer\MailerFactory', 'createMailer' ]
+        arguments: [ 'smtp' ]
+        public: true
