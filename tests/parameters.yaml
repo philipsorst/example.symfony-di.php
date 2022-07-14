@@ -1,0 +1,29 @@
+# Parameters are usually set via the ENV or Container Extensions
+parameters:
+    smtp_transport_username: 'user'
+    smtp_transport_password: 'password'
+    smtp_transport_host: 'example.com'
+    smtp_transport_port: 25
+
+services:
+
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Service\Mail\Mailer\:
+        resource: '../src/Service/Mail/Mailer'
+
+    App\Service\Mail\Transport\SmtpTransport:
+        arguments:
+            $username: '%smtp_transport_username%'
+            $password: '%smtp_transport_password%'
+            $host: '%smtp_transport_host%'
+            $port: '%smtp_transport_port%'
+
+    App\Service\Mail\Transport\TransportInterface: '@App\Service\Mail\Transport\SmtpTransport'
+    App\Service\Mail\Mailer\MailerInterface: '@App\Service\Mail\Mailer\GenericMailer'
+
+    App\Service\Newsletter\NewsletterService:
+        public: true
+        autowire: true

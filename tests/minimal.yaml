@@ -1,0 +1,8 @@
+services:
+    App\Service\Mail\Mailer\MailerInterface:
+        class: App\Service\Mail\Mailer\SendmailMailer
+
+    App\Service\Newsletter\NewsletterService:
+        public: true
+        arguments:
+            - '@App\Service\Mail\Mailer\MailerInterface'

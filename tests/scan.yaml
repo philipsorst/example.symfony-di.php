@@ -1,0 +1,12 @@
+services:
+
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Service\Mail\Mailer\:
+        resource: '../src/Service/Mail/Mailer'
+
+    App\Service\Newsletter\NewsletterService:
+        public: true
+        autowire: true
