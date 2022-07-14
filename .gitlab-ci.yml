@@ -15,7 +15,7 @@ PHPUnit:
     before_script:
         - composer install --no-progress -o
     script:
-        - bin/phpunit
+        - vendor/bin/phpunit
 
 Psalm:
     stage: test
