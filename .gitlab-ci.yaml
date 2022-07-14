@@ -1,0 +1,31 @@
+stages:
+    - test
+
+variables:
+    COMPOSER_CACHE_DIR: composer-cache
+    DOCKER_IMAGE_TEST: dontdrinkandroot/php:20-04-8-1-test
+
+PHPUnit:
+    stage: test
+    image: $DOCKER_IMAGE_TEST
+    cache:
+        -   key: ${CI_COMMIT_REF_NAME}_composer
+            paths:
+                - composer-cache/
+    before_script:
+        - composer install --no-progress -o
+    script:
+        - bin/phpunit
+
+Psalm:
+    stage: test
+    image: $DOCKER_IMAGE_TEST
+    cache:
+        -   key: ${CI_COMMIT_REF_NAME}_composer
+            paths:
+                - composer-cache/
+            policy: pull # Just pull as we don't want to override test cache
+    before_script:
+        - composer install --no-progress -o --no-scripts
+    script:
+        - psalm
