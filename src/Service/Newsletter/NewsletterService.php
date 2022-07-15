@@ -4,17 +4,20 @@ namespace App\Service\Newsletter;
 
 use App\Model\NewsletterMail;
 use App\Service\Mail\Mailer\MailerInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 
-class NewsletterService
+class NewsletterService implements NewsletterServiceInterface
 {
+    private LoggerInterface $logger;
+
     public function __construct(private readonly MailerInterface $mailer)
     {
+        $this->logger = new NullLogger();
     }
 
     /**
-     * @param list<string> $recipients
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function sendNewsletters(array $recipients): bool
     {
@@ -26,5 +29,10 @@ class NewsletterService
         }
 
         return true;
+    }
+
+    public function setLogger(LoggerInterface $logger): void
+    {
+        $this->logger = $logger;
     }
 }
