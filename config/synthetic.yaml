@@ -1,0 +1,8 @@
+services:
+    App\Service\Mail\Mailer\MailerInterface:
+        synthetic: true
+
+    App\Service\Newsletter\NewsletterService:
+        public: true
+        arguments:
+            - '@App\Service\Mail\Mailer\MailerInterface'
