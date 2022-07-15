@@ -10,8 +10,9 @@ class SmtpTransport implements TransportInterface
         private readonly string $username,
         private readonly string $password,
         private readonly string $host,
-        private readonly int $port
-    ) {
+        private readonly int    $port
+    )
+    {
     }
 
     /**

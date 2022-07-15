@@ -1,0 +1,10 @@
+services:
+    App\Service\Mail\Mailer\SendmailMailer:
+        public: true
+        lazy: true
+
+    App\Service\Mail\Mailer\MailerInterface: '@App\Service\Mail\Mailer\SendmailMailer'
+
+    App\Service\Newsletter\NewsletterService:
+        public: true
+        autowire: true
