@@ -35,4 +35,9 @@ class NewsletterService implements NewsletterServiceInterface
     {
         $this->logger = $logger;
     }
+
+    public function getLogger(): LoggerInterface
+    {
+        return $this->logger;
+    }
 }

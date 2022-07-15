@@ -1,4 +1,5 @@
 services:
+
     App\Service\Mail\Mailer\MailerInterface:
         class: App\Service\Mail\Mailer\SendmailMailer
 

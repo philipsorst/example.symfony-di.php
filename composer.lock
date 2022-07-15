@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "a631a02c19dc1877c5564546f696cd17",
+  "content-hash": "b400e2a0188260491ffbf93076e22c64",
   "packages": [
     {
       "name": "friendsofphp/proxy-manager-lts",
@@ -165,16 +165,16 @@
       "dist": {
         "type": "zip",
         "url": "https://api.github.com/repos/php-fig/container/zipball/c71ecc56dfe541dbd90c5360474fbc405f8d5963",
-                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+        "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=7.4.0"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -198,26 +198,76 @@
                 "PSR-11",
                 "container",
                 "container-interface",
-                "container-interop",
-                "psr"
+              "container-interop",
+              "psr"
             ],
-            "support": {
-                "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container/tree/2.0.2"
-            },
-            "time": "2021-11-05T16:47:00+00:00"
-        },
+      "support": {
+        "issues": "https://github.com/php-fig/container/issues",
+        "source": "https://github.com/php-fig/container/tree/2.0.2"
+      },
+      "time": "2021-11-05T16:47:00+00:00"
+    },
+    {
+      "name": "psr/log",
+      "version": "3.0.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/php-fig/log.git",
+        "reference": "fe5ea303b0887d5caefd3d431c3e61ad47037001"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-fig/log/zipball/fe5ea303b0887d5caefd3d431c3e61ad47037001",
+        "reference": "fe5ea303b0887d5caefd3d431c3e61ad47037001",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=8.0.0"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "3.x-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Psr\\Log\\": "src"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
         {
-            "name": "symfony/config",
-            "version": "v6.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/config.git",
-                "reference": "ed8d12417bcacd2d969750feb1fe1aab1c11e613"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/ed8d12417bcacd2d969750feb1fe1aab1c11e613",
+          "name": "PHP-FIG",
+          "homepage": "https://www.php-fig.org/"
+        }
+      ],
+      "description": "Common interface for logging libraries",
+      "homepage": "https://github.com/php-fig/log",
+      "keywords": [
+        "log",
+        "psr",
+        "psr-3"
+      ],
+      "support": {
+        "source": "https://github.com/php-fig/log/tree/3.0.0"
+      },
+      "time": "2021-07-14T16:46:02+00:00"
+    },
+    {
+      "name": "symfony/config",
+      "version": "v6.1.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/config.git",
+        "reference": "ed8d12417bcacd2d969750feb1fe1aab1c11e613"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/config/zipball/ed8d12417bcacd2d969750feb1fe1aab1c11e613",
                 "reference": "ed8d12417bcacd2d969750feb1fe1aab1c11e613",
                 "shasum": ""
             },
@@ -651,14 +701,14 @@
                 "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.26.0"
             },
             "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                  "type": "github"
-                },
+              {
+                "url": "https://symfony.com/sponsor",
+                "type": "custom"
+              },
+              {
+                "url": "https://github.com/fabpot",
+                "type": "github"
+              },
               {
                 "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                 "type": "tidelift"
@@ -743,16 +793,16 @@
       "dist": {
         "type": "zip",
         "url": "https://api.github.com/repos/symfony/service-contracts/zipball/925e713fe8fcacf6bc05e936edd8dd5441a21239",
-                "reference": "925e713fe8fcacf6bc05e936edd8dd5441a21239",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.1",
-                "psr/container": "^2.0"
-            },
-            "conflict": {
-                "ext-psr": "<1.1|>=2"
-            },
+        "reference": "925e713fe8fcacf6bc05e936edd8dd5441a21239",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=8.1",
+        "psr/container": "^2.0"
+      },
+      "conflict": {
+        "ext-psr": "<1.1|>=2"
+      },
             "suggest": {
                 "symfony/service-implementation": ""
             },

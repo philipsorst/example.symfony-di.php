@@ -4,6 +4,7 @@ namespace App\Tests;
 
 use App\Service\Mail\Mailer\MailerInterface;
 use App\Service\Mail\Mailer\SendmailMailer;
+use App\Service\Newsletter\MonitoringNewsletterService;
 use App\Service\Newsletter\NewsletterService;
 use ArgumentCountError;
 use PHPUnit\Framework\TestCase;
@@ -126,6 +127,20 @@ class Chapter01BasicTest extends TestCase
 
         $newsletterService = $containerBuilder->get(NewsletterService::class);
         self::assertInstanceOf(NewsletterService::class, $newsletterService);
+
+        self::assertTrue($newsletterService->sendNewsletters(['user@example.com']));
+    }
+
+    public function testOptional(): void
+    {
+        $containerBuilder = new ContainerBuilder();
+        $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__ . '/../config'));
+        $loader->load('optional.yaml');
+
+        $containerBuilder->compile();
+
+        $newsletterService = $containerBuilder->get(NewsletterService::class);
+        self::assertInstanceOf(MonitoringNewsletterService::class, $newsletterService);
 
         self::assertTrue($newsletterService->sendNewsletters(['user@example.com']));
     }
