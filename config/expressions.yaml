@@ -1,0 +1,15 @@
+parameters:
+    smtp_port: 465
+
+services:
+
+    App\Service\Mail\Transport\SmtpSettingsService:
+        public: true
+
+    App\Service\Mail\Transport\SmtpTransport:
+        public: true
+        arguments:
+            - '@=service("App\\Service\\Mail\\Transport\\SmtpSettingsService").getUsername()'
+            - '@=service("App\\Service\\Mail\\Transport\\SmtpSettingsService").getPassword()'
+            - '@=service("App\\Service\\Mail\\Transport\\SmtpSettingsService").getHost()'
+            - '@=parameter("smtp_port")'

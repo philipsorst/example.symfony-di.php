@@ -100,8 +100,6 @@ class DI05AdvancedTest extends TestCase
     {
         $containerBuilder = new ContainerBuilder();
 
-        $containerBuilder->registerExtension(new MailerExtension());
-
         $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__ . '/../config'));
         $loader->load('configurator.yaml');
 
@@ -110,5 +108,22 @@ class DI05AdvancedTest extends TestCase
         $mailer = $containerBuilder->get(ChainMailer::class);
         self::assertInstanceOf(ChainMailer::class, $mailer);
         self::assertCount(2, $mailer->transports);
+    }
+
+    public function testExpression(): void
+    {
+        $containerBuilder = new ContainerBuilder();
+
+        $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__ . '/../config'));
+        $loader->load('expressions.yaml');
+
+        $containerBuilder->compile(true);
+
+        $transport = $containerBuilder->get(SmtpTransport::class);
+        self::assertInstanceOf(SmtpTransport::class, $transport);
+        self::assertEquals('username', $transport->username);
+        self::assertEquals('password', $transport->password);
+        self::assertEquals('example.com', $transport->host);
+        self::assertEquals(465, $transport->port);
     }
 }
