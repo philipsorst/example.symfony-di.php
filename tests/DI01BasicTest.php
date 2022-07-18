@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class Chapter01BasicTest extends TestCase
+class DI01BasicTest extends TestCase
 {
     public function testWhyDI(): void
     {

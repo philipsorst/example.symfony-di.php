@@ -1,0 +1,11 @@
+services:
+
+    App\Service\Mail\Transport\SmtpSettingsService: ~
+
+    App\Service\Mail\Mailer\ChainMailerConfigurator:
+        arguments:
+            - '@App\Service\Mail\Transport\SmtpSettingsService'
+
+    App\Service\Mail\Mailer\ChainMailer:
+        configurator: [ '@App\Service\Mail\Mailer\ChainMailerConfigurator', 'configure' ]
+        public: true

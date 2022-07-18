@@ -12,7 +12,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class Chapter02ExtensionsTest extends TestCase
+class DI03ExtensionsTest extends TestCase
 {
     public function testExtensionAndCompilerPass(): void
     {

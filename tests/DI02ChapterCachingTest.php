@@ -11,11 +11,10 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class ChapterCachingTest extends TestCase
+class DI02ChapterCachingTest extends TestCase
 {
     public function testCaching(): void
     {
-
         $file = sys_get_temp_dir() . '/example_container.php';
         if (file_exists($file)) {
             unlink($file);
