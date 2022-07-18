@@ -10,10 +10,18 @@ use App\Service\Newsletter\NewsletterService;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class DI03ExtensionsTest extends TestCase
 {
+    /**
+     * In order to modularize the container even more it is possible to register custom Extensions.
+     * These extensions can have their own configuration and service definitions and will be merged with the parent
+     * container. It is also possible to register custom compiler passes that further modify the container building
+     * when needed.
+     * We can also manipulate the configuration of other extensions by using a {@see PrependExtensionInterface}.
+     */
     public function testExtensionAndCompilerPass(): void
     {
         $_SERVER['MAILER_USERNAME'] = 'username';

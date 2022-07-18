@@ -13,6 +13,12 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class DI02ChapterCachingTest extends TestCase
 {
+    /**
+     * Usually the container needs to be built on every call/request. This can be costly as the configuration and
+     * extensions have to be parsed and resolved.
+     * We can dump the container to disk after this process instead and use this fully resolved instance the next time
+     * instead. If the configuration changes we need to redump if of course.
+     */
     public function testCaching(): void
     {
         $file = sys_get_temp_dir() . '/example_container.php';

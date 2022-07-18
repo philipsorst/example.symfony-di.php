@@ -2,7 +2,6 @@
 
 namespace App\Tests;
 
-use App\DependencyInjection\Mailer\MailerExtension;
 use App\Service\Logger\EchoLogger;
 use App\Service\Mail\Mailer\ChainMailer;
 use App\Service\Mail\Mailer\GenericMailer;
@@ -21,11 +20,13 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class DI05AdvancedTest extends TestCase
 {
+    /**
+     * Symfony DI allows you to apply the factory pattern. That means another service factory is responsible for
+     * creating the objects needed.
+     */
     public function testStaticFactory(): void
     {
         $containerBuilder = new ContainerBuilder();
-
-        $containerBuilder->registerExtension(new MailerExtension());
 
         $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__ . '/../config'));
         $loader->load('factory_static.yaml');
@@ -37,11 +38,12 @@ class DI05AdvancedTest extends TestCase
         self::assertInstanceOf(SendmailTransport::class, $mailer->transport);
     }
 
+    /**
+     * The factory does not need to be static.
+     */
     public function testInvokableFactory(): void
     {
         $containerBuilder = new ContainerBuilder();
-
-        $containerBuilder->registerExtension(new MailerExtension());
 
         $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__ . '/../config'));
         $loader->load('factory_invokable.yaml');
@@ -53,6 +55,11 @@ class DI05AdvancedTest extends TestCase
         self::assertInstanceOf(SmtpTransport::class, $mailer->transport);
     }
 
+    /**
+     * Sometimes the construction of services can be costly (e.g. establishing database connection). In this case we
+     * can use LAZY services that will only be instantiated when they are actually used. This requires a proxy
+     * manager.
+     */
     public function testLazy(): void
     {
         $containerBuilder = new ContainerBuilder();
@@ -67,6 +74,10 @@ class DI05AdvancedTest extends TestCase
         self::assertContains(LazyLoadingInterface::class, class_implements($mailer));
     }
 
+    /**
+     * In rare cases it is not possible to construct an instance via the DI configuration, but we want to use an
+     * already instantiated service and make it accessible via the container.
+     */
     public function testSynthetic(): void
     {
         $containerBuilder = new ContainerBuilder();
@@ -83,6 +94,9 @@ class DI05AdvancedTest extends TestCase
         self::assertTrue($newsletterService->sendNewsletters(['user@example.com']));
     }
 
+    /**
+     * We can also use the decorator pattern which is sometimes more efficient than subclassing.
+     */
     public function testDecorate(): void
     {
         $containerBuilder = new ContainerBuilder();
@@ -97,6 +111,10 @@ class DI05AdvancedTest extends TestCase
         self::assertTrue($newsletterService->sendNewsletters(['user@example.com']));
     }
 
+    /**
+     * If the configuration of a service is very complex, we can use a configurator to extract this task to a
+     * designated service.
+     */
     public function testConfigurator(): void
     {
         $containerBuilder = new ContainerBuilder();
@@ -111,6 +129,10 @@ class DI05AdvancedTest extends TestCase
         self::assertCount(2, $mailer->transports);
     }
 
+    /**
+     * It is also possible to use expressions when defining services that have access to service, parameter and env
+     * in their context. We need the expression-language component to use them.
+     */
     public function testExpression(): void
     {
         $containerBuilder = new ContainerBuilder();
@@ -128,6 +150,9 @@ class DI05AdvancedTest extends TestCase
         self::assertEquals(465, $transport->port);
     }
 
+    /**
+     * Defining parent services can be useful if we want to add a common configuration for all parent classes.
+     */
     public function testParent(): void
     {
         $containerBuilder = new ContainerBuilder();
