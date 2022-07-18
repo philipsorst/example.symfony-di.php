@@ -7,12 +7,11 @@ use App\Model\Email;
 class SmtpTransport implements TransportInterface
 {
     public function __construct(
-        private readonly string $username,
-        private readonly string $password,
-        private readonly string $host,
-        private readonly int    $port
-    )
-    {
+        public readonly string $username,
+        public readonly string $password,
+        public readonly string $host,
+        public readonly int $port = 25
+    ) {
     }
 
     /**

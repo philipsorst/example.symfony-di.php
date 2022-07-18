@@ -28,7 +28,7 @@ class MailerExtension extends Extension
                 ->addArgument((string)$smtpConfig['username'])
                 ->addArgument((string)$smtpConfig['password'])
                 ->addArgument((string)$smtpConfig['host'])
-                ->addArgument((int)$smtpConfig['port']);
+                ->addArgument((string)$smtpConfig['port']);
             $container
                 ->setAlias(TransportInterface::class, SmtpTransport::class)
                 ->setPublic(true);
