@@ -4,7 +4,7 @@ namespace App\Service\Mail\Transport;
 
 use App\Model\Email;
 
-class SendmailTransport implements TransportInterface
+class SendmailTransport extends BaseTransport implements TransportInterface
 {
     /**
      * {@inheritdoc}

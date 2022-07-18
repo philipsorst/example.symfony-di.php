@@ -1,0 +1,18 @@
+services:
+
+    logger:
+        class: App\Service\Logger\EchoLogger
+
+    App\Service\Mail\Transport\BaseTransport:
+        abstract: true
+        calls:
+            -   setLogger: [ '@logger' ]
+
+    App\Service\Mail\Transport\SendmailTransport:
+        public: true
+        parent: App\Service\Mail\Transport\BaseTransport
+
+    App\Service\Mail\Transport\SmtpTransport:
+        public: true
+        parent: App\Service\Mail\Transport\BaseTransport
+        arguments: [ 'username','password','example.com',25 ]

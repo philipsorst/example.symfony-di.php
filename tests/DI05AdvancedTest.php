@@ -3,6 +3,7 @@
 namespace App\Tests;
 
 use App\DependencyInjection\Mailer\MailerExtension;
+use App\Service\Logger\EchoLogger;
 use App\Service\Mail\Mailer\ChainMailer;
 use App\Service\Mail\Mailer\GenericMailer;
 use App\Service\Mail\Mailer\MailerInterface;
@@ -125,5 +126,23 @@ class DI05AdvancedTest extends TestCase
         self::assertEquals('password', $transport->password);
         self::assertEquals('example.com', $transport->host);
         self::assertEquals(465, $transport->port);
+    }
+
+    public function testParent(): void
+    {
+        $containerBuilder = new ContainerBuilder();
+
+        $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__ . '/../config'));
+        $loader->load('parent.yaml');
+
+        $containerBuilder->compile(true);
+
+        $smtpTransport = $containerBuilder->get(SmtpTransport::class);
+        self::assertInstanceOf(SmtpTransport::class, $smtpTransport);
+        self::assertInstanceOf(EchoLogger::class, $smtpTransport->getLogger());
+
+        $sendmailTransport = $containerBuilder->get(SendmailTransport::class);
+        self::assertInstanceOf(SendmailTransport::class, $sendmailTransport);
+        self::assertInstanceOf(EchoLogger::class, $sendmailTransport->getLogger());
     }
 }

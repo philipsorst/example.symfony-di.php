@@ -4,7 +4,7 @@ namespace App\Service\Mail\Transport;
 
 use App\Model\Email;
 
-class SmtpTransport implements TransportInterface
+class SmtpTransport extends BaseTransport implements TransportInterface
 {
     public function __construct(
         public readonly string $username,
@@ -12,6 +12,7 @@ class SmtpTransport implements TransportInterface
         public readonly string $host,
         public readonly int $port = 25
     ) {
+        parent::__construct();
     }
 
     /**
