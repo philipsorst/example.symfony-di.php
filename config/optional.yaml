@@ -1,12 +1,14 @@
 services:
 
-    App\Service\Mail\Mailer\MailerInterface:
-        class: App\Service\Mail\Mailer\SendmailMailer
+    logger:
+        class: 'App\Service\Logger\EchoLogger'
+
+    App\Service\Mail\Mailer\SendmailMailer: ~
+
+    App\Service\Mail\Mailer\MailerInterface: '@App\Service\Mail\Mailer\SendmailMailer'
 
     App\Service\Newsletter\NewsletterService:
         autowire: true
         public: true
-
-    App\Service\Newsletter\MonitoringNewsletterService:
-        decorates: App\Service\Newsletter\NewsletterService
-        arguments: [ '@.inner' ]
+        calls:
+            - [ 'setLogger', [ '@logger' ] ]

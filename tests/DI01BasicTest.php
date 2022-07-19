@@ -4,7 +4,6 @@ namespace App\Tests;
 
 use App\Service\Mail\Mailer\MailerInterface;
 use App\Service\Mail\Mailer\SendmailMailer;
-use App\Service\Newsletter\MonitoringNewsletterService;
 use App\Service\Newsletter\NewsletterService;
 use ArgumentCountError;
 use PHPUnit\Framework\TestCase;
@@ -27,7 +26,9 @@ class DI01BasicTest extends TestCase
         $mailer = new SendmailMailer();
         $newsletterService = new NewsletterService($mailer);
 
-        self::assertTrue($newsletterService->sendNewsletters(['user@example.com']));
+        self::assertTrue(
+            $newsletterService->sendNewsletters(['Philip Washington Sorst <philip@sorst.net>'])
+        );
     }
 
     /**
@@ -178,7 +179,7 @@ class DI01BasicTest extends TestCase
         $containerBuilder->compile();
 
         $newsletterService = $containerBuilder->get(NewsletterService::class);
-        self::assertInstanceOf(MonitoringNewsletterService::class, $newsletterService);
+        self::assertInstanceOf(NewsletterService::class, $newsletterService);
 
         self::assertTrue($newsletterService->sendNewsletters(['user@example.com']));
     }
